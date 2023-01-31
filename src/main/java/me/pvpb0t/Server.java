@@ -46,7 +46,7 @@ public class Server extends Thread{
             startServer();
 
         }else{
-            App.writeToChat("Specify Port");
+            Bootstrap.getGuiApp().writeToChat("Specify Port");
         }
     }
 
@@ -78,7 +78,7 @@ public class Server extends Thread{
 
         while ( true ) {
             try {
-                App.writeToChat("Initilize server on socketPort: "+serverSocket.getLocalPort());
+                Bootstrap.getGuiApp().writeToChat("Initilize server on socketPort: "+serverSocket.getLocalPort());
                 //waits till someone connects
                 socket = serverSocket.accept();
                 ServerConnection oneconnection = new ServerConnection(socket, this);

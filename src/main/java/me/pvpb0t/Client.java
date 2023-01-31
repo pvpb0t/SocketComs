@@ -36,7 +36,7 @@ public class Client extends Thread {
         if(port>0){
             startClient();
         }else{
-            App.writeToChat("Specify Port");
+            Bootstrap.getGuiApp().writeToChat("Specify Port");
         }
     }
 
@@ -79,7 +79,7 @@ public class Client extends Thread {
 
                 String keyboardInput = "input";
                 os.writeBytes( keyboardInput + "\n" );
-                App.writeToChat(keyboardInput);
+                Bootstrap.getGuiApp().writeToChat(keyboardInput);
 
                 if(keyboardInput == "quit//v"){
                     break;

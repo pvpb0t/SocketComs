@@ -20,12 +20,13 @@ public class App extends JFrame {
 
     private int port;
 
-    private static App app = new App();
     public static void main(String[] args) {
+        App app = new App();
         app.setVisible(true);
     }
-    public static void writeToChat(String text){
-        app.chatArea.append(text+"\n");
+    public void writeToChat(String text){
+        System.out.println(text);
+        this.chatArea.append(text+"\n");
     }
 
     public App() {
@@ -35,7 +36,27 @@ public class App extends JFrame {
         setLayout(new BorderLayout());
 
         add(chatArea, BorderLayout.CENTER);
-        add(inputField, BorderLayout.SOUTH);
+        JButton btnSend = new JButton("Send");
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.X_AXIS));
+        inputField.setPreferredSize(new Dimension(350, 30));
+        inputPanel.add(inputField);
+        inputPanel.add(btnSend);
+        add(inputPanel, BorderLayout.SOUTH);
+
+        btnSend.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String message = inputField.getText();
+                if (!message.isEmpty()) {
+                    // Send the message to the chat area
+                    writeToChat(message);
+                    // Clear the input field after sending the message
+                    inputField.setText("");
+                }
+            }
+        });
+
 
         client = new Client(chatArea, inputField);
         server = new Server(chatArea);

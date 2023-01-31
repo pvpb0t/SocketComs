@@ -15,7 +15,7 @@ class ServerConnection extends Thread{
     public ServerConnection(Socket clientSocket, Server server) {
         this.clientSocket = clientSocket;
         this.server = server;
-        App.writeToChat( "Connection established with: " + clientSocket );
+        Bootstrap.getGuiApp().writeToChat( "Connection established with: " + clientSocket );
         try {
             is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             os = new PrintStream(clientSocket.getOutputStream());
@@ -33,7 +33,7 @@ class ServerConnection extends Thread{
 
             while (true) {
                 line = is.readLine();
-                App.writeToChat( "Received " + line );
+                Bootstrap.getGuiApp().writeToChat( "Received " + line );
 
                 if(line == "closeCon//V"){
                     break;
