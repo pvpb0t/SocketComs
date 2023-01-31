@@ -75,14 +75,16 @@ public class Server extends Thread{
             System.err.println("Couldn't get I/O for the connection to: " + hostname);
         }
 
+        Bootstrap.getGuiApp().writeToChat("Initilize server on socketPort: "+serverSocket.getLocalPort());
 
         while ( true ) {
             try {
-                Bootstrap.getGuiApp().writeToChat("Initilize server on socketPort: "+serverSocket.getLocalPort());
                 //waits till someone connects
                 socket = serverSocket.accept();
                 ServerConnection oneconnection = new ServerConnection(socket, this);
                 oneconnection.start();
+                Bootstrap.getGuiApp().writeToChat("Connetion to server recived: " + oneconnection.clientSocket.getChannel().toString());
+
             }
             catch (Exception e) {
                 System.out.println(e);

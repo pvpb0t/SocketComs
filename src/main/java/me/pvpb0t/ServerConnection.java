@@ -33,7 +33,7 @@ class ServerConnection extends Thread{
 
             while (true) {
                 line = is.readLine();
-                Bootstrap.getGuiApp().writeToChat( "Received " + line );
+                Bootstrap.getGuiApp().writeToChat( "Server received " + line );
 
                 if(line == "closeCon//V"){
                     break;
