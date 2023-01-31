@@ -1,4 +1,6 @@
-package me.pvpb0t;
+package me.pvpb0t.network.server;
+
+import me.pvpb0t.Bootstrap;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -7,7 +9,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class Server extends Thread{

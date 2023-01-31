@@ -1,4 +1,6 @@
-package me.pvpb0t;
+package me.pvpb0t.network.client;
+
+import me.pvpb0t.Bootstrap;
 
 import javax.swing.*;
 import java.io.*;

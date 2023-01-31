@@ -1,15 +1,13 @@
 package me.pvpb0t;
 
+import me.pvpb0t.network.client.Client;
+import me.pvpb0t.network.server.Server;
+
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.util.ArrayList;
 
 public class App extends JFrame {
 

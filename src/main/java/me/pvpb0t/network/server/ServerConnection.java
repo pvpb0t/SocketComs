@@ -1,4 +1,6 @@
-package me.pvpb0t;
+package me.pvpb0t.network.server;
+
+import me.pvpb0t.Bootstrap;
 
 import java.io.BufferedReader;
 import java.io.IOException;
