@@ -1,4 +1,6 @@
-package me.pvpb0t;
+package me.pvpb0t.network.server;
+
+import me.pvpb0t.Bootstrap;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +17,7 @@ class ServerConnection extends Thread{
     public ServerConnection(Socket clientSocket, Server server) {
         this.clientSocket = clientSocket;
         this.server = server;
-        App.writeToChat( "Connection established with: " + clientSocket );
+        Bootstrap.getGuiApp().writeToChat( "Connection established with: " + clientSocket );
         try {
             is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             os = new PrintStream(clientSocket.getOutputStream());
@@ -33,7 +35,7 @@ class ServerConnection extends Thread{
 
             while (true) {
                 line = is.readLine();
-                App.writeToChat( "Received " + line );
+                Bootstrap.getGuiApp().writeToChat( "Server received " + line );
 
                 if(line == "closeCon//V"){
                     break;

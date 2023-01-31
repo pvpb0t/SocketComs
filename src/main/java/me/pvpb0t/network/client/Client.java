@@ -1,4 +1,6 @@
-package me.pvpb0t;
+package me.pvpb0t.network.client;
+
+import me.pvpb0t.Bootstrap;
 
 import javax.swing.*;
 import java.io.*;
@@ -14,10 +16,20 @@ public class Client extends Thread {
     DataOutputStream os = null;
     BufferedReader is = null;
     private Socket socket;
+    private String message = "";
 
     public Client(JTextArea chatArea, JTextField inputField) {
         this.chatArea = chatArea;
         this.inputField = inputField;
+    }
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     private int port;
@@ -36,9 +48,20 @@ public class Client extends Thread {
         if(port>0){
             startClient();
         }else{
-            App.writeToChat("Specify Port");
+            Bootstrap.getGuiApp().writeToChat("Specify Port");
         }
     }
+
+    public void sendMessageStream(String message){
+        try {
+            os.writeBytes( message + "\n" );
+            Bootstrap.getGuiApp().writeToChat("Client sent: "+message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
     protected void startClient() {
@@ -79,7 +102,7 @@ public class Client extends Thread {
 
                 String keyboardInput = "input";
                 os.writeBytes( keyboardInput + "\n" );
-                App.writeToChat(keyboardInput);
+                Bootstrap.getGuiApp().writeToChat("Client sent: "+keyboardInput);
 
                 if(keyboardInput == "quit//v"){
                     break;

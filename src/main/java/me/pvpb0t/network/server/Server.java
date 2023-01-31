@@ -1,4 +1,6 @@
-package me.pvpb0t;
+package me.pvpb0t.network.server;
+
+import me.pvpb0t.Bootstrap;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -7,7 +9,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class Server extends Thread{
@@ -46,7 +47,7 @@ public class Server extends Thread{
             startServer();
 
         }else{
-            App.writeToChat("Specify Port");
+            Bootstrap.getGuiApp().writeToChat("Specify Port");
         }
     }
 
@@ -75,14 +76,16 @@ public class Server extends Thread{
             System.err.println("Couldn't get I/O for the connection to: " + hostname);
         }
 
+        Bootstrap.getGuiApp().writeToChat("Initilize server on socketPort: "+serverSocket.getLocalPort());
 
         while ( true ) {
             try {
-                App.writeToChat("Initilize server on socketPort: "+serverSocket.getLocalPort());
                 //waits till someone connects
                 socket = serverSocket.accept();
                 ServerConnection oneconnection = new ServerConnection(socket, this);
                 oneconnection.start();
+                Bootstrap.getGuiApp().writeToChat("Connetion to server recived: " + oneconnection.clientSocket.getChannel().toString());
+
             }
             catch (Exception e) {
                 System.out.println(e);

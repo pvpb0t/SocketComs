@@ -4,6 +4,10 @@ public class Bootstrap {
 
     private static App guiApp;
 
+    public static App getGuiApp() {
+        return guiApp;
+    }
+
     static {
         guiApp = new App();
     }
