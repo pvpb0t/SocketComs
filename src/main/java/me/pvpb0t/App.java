@@ -20,10 +20,7 @@ public class App extends JFrame {
 
     private int port;
 
-    public static void main(String[] args) {
-        App app = new App();
-        app.setVisible(true);
-    }
+
     public void writeToChat(String text){
         System.out.println(text);
         this.chatArea.append(text+"\n");
