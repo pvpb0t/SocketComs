@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.UUID;
 
 public class Client extends Thread {
 
@@ -16,11 +17,13 @@ public class Client extends Thread {
     DataOutputStream os = null;
     BufferedReader is = null;
     private Socket socket;
+    private String id;
     private String message = "";
 
     public Client(JTextArea chatArea, JTextField inputField) {
         this.chatArea = chatArea;
         this.inputField = inputField;
+        id= UUID.randomUUID().toString();
     }
 
 
@@ -83,6 +86,7 @@ public class Client extends Thread {
             clientSocket = new Socket(hostname, port);
             os = new DataOutputStream(clientSocket.getOutputStream());
             is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            Bootstrap.getGuiApp().writeToChat("Client connected id: "+id);
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + hostname);
         } catch (IOException e) {
